@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: todo
+      POSTGRES_USER: guest
+      POSTGRES_PASSWORD: drowssap
+
+  web:
+    container_name: web-todo
+    restart: always
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/todo
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
