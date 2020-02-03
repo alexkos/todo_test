@@ -12,4 +12,4 @@ class ListSerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ['title', 'finished', 'task_list']
+        fields = ['id', 'title', 'finished', 'task_list']

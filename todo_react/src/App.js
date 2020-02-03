@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import logo from './logo.svg'
+// import logo from './logo.svg'
 import './App.css'
-import TodoData from "./TodoData"
+// import TodoData from "./TodoData"
 import TodoItem from './components/TodoItem'
 
 
@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      todo: TodoData,
+      todo: [],
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -19,7 +19,7 @@ class App extends Component {
     this.setState(prevState => {
       const updatedTodos = prevState.todo.map(todo => {
         if (todo.id === id) {
-            todo.completed = !todo.completed
+            todo.finished = !todo.finished
         }
         return todo
       })
@@ -27,6 +27,16 @@ class App extends Component {
         todo: updatedTodos
       }
     })
+  }
+
+  componentDidMount() {
+    fetch("http://127.0.0.1:8000/task-list/1/")
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            todo: data,
+          })
+        })
   }
 
   render() {

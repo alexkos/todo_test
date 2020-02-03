@@ -9,7 +9,6 @@ lists = ListViewSet.as_view({
 
 tasks = TaskViewSet.as_view({
     'get': 'list',
-    'get': 'retrieve',
     'post': 'create',
     'put': 'update',
     'patch': 'partial_update',
